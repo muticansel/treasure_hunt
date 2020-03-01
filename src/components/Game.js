@@ -16,7 +16,27 @@ const Game = props => {
     const [foundTreasure, setFoundTreasure] = useState(0)
     const [guesses, setGuesses] = useState([])
 
+
+    const sendGameStat = async () => {
+        await fetch('http://localhost:5000/api/newGame', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': "*"
+            },
+            body: JSON.stringify({
+                playerName: userName,
+                turn: turn + 1
+            })
+        })
+    }
     if (foundTreasure >= 3) {
+        sendGameStat()
+        return <Redirect to="/gameOver" />
+    }
+
+    if(squares.filter(s => s === "").length === 0){
+        sendGameStat(true)
         return <Redirect to="/gameOver" />
     }
 
@@ -35,7 +55,6 @@ const Game = props => {
                 'Access-Control-Allow-Origin': "*"
             },
             body: JSON.stringify({
-                playerName: userName,
                 guesses: guesses
             })
         })
@@ -45,7 +64,7 @@ const Game = props => {
         const updatedSquares = [...squares];
 
         guesses.forEach((item, index) => {
-            updatedSquares[item] = data.answers[index]
+            updatedSquares[item] = data.answers[index] ? data.answers[index] : "1"
         })
 
         setFoundTreasure(foundTreasure + data.answers.filter(ans => ans === 'T').length)

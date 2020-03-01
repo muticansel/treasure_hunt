@@ -22,9 +22,9 @@ const StartGame = props => {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': "*"
             },
-            body: {
-                "playerName": name
-            }
+            body: JSON.stringify({
+                playerName: name
+            })
         }).then(res => {
             dispatch(gameActions.reset_turn())
             if(res.status === 200)

@@ -1,3 +1,8 @@
+  body {
+    font: 14px "Century Gothic", Futura, sans-serif;
+    margin: 20px;
+  }
+  
   .ui.button.btnStyle {
     margin: 10px;
   }
@@ -12,6 +17,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 20
   }
 
   .ui.header.headerStyle {
@@ -65,8 +71,4 @@
     padding: 0;
     text-align: center;
     width: 34px;
-  }
-  
-  .game-info {
-    margin-left: 20px;
   }

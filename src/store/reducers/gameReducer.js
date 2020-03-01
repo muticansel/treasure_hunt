@@ -1,11 +1,9 @@
-import { SET_NAME, ADD_TURN, GET_TOP_10 } from '../actions/gameActions';
+import { SET_NAME, ADD_TURN, RESET_TURN, GET_TOP_10 } from '../actions/gameActions';
 
 const initialState = {
     name: null,
     turn: 0,
-    top10: [
-        
-    ]
+    top10: []
 }
 
 const gameReducer = (state = initialState, action) => {
@@ -19,6 +17,11 @@ const gameReducer = (state = initialState, action) => {
             return {
                 ...state,
                 turn: state.turn + 1
+            }
+        case RESET_TURN:
+            return {
+                ...state,
+                turn: 0
             }
         case GET_TOP_10:
             return {

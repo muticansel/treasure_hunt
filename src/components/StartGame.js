@@ -26,6 +26,7 @@ const StartGame = props => {
                 "playerName": name
             }
         }).then(res => {
+            dispatch(gameActions.reset_turn())
             if(res.status === 200)
                 props.history.push("/game")
         })

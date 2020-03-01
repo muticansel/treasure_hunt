@@ -1,0 +1,72 @@
+  .ui.button.btnStyle {
+    margin: 10px;
+  }
+
+  .ui.label.labelStyle {
+    margin: 10px;
+  }
+
+  .ui.segment.segmentStyle {
+    width: 100%;
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ui.header.headerStyle {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  .ui.segment.listSegment {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .ui.segment.itemStyle {
+    display: flex;
+    flex: 2;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ui.segment.segmentRowStyle {
+    width: 100%;
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .ui.list.description.descStyle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .square {
+    background: #fff;
+    border: 1px solid #999;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 34px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 34px;
+  }
+  
+  .game-info {
+    margin-left: 20px;
+  }

@@ -1,7 +1,7 @@
 import { SET_NAME, ADD_TURN, RESET_TURN, GET_TOP_10 } from '../actions/gameActions';
 
 const initialState = {
-    name: null,
+    userName: null,
     turn: 0,
     top10: []
 }
@@ -11,7 +11,7 @@ const gameReducer = (state = initialState, action) => {
         case SET_NAME:
             return {
                 ...state,
-                name: action.name
+                userName: action.userName
             }
         case ADD_TURN:
             return {

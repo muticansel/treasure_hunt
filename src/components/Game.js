@@ -6,10 +6,11 @@ import { Button, Label, Segment } from 'semantic-ui-react';
 import Board from '../UI/Board';
 import '../assets/TicTacToe.css';
 import * as gameActions from '../store/actions/gameActions';
+import Constants from '../constants';
 
 const Game = props => {
     const dispatch = useDispatch()
-    const userName = useSelector(state => state.gameReducer.name);
+    const userName = useSelector(state => state.gameReducer.userName);
     const turn = useSelector(state => state.gameReducer.turn);
 
     const [squares, setSquares] = useState(Array(25).fill(""))
@@ -18,7 +19,7 @@ const Game = props => {
 
 
     const sendGameStat = async () => {
-        await fetch('http://localhost:5000/api/newGame', {
+        await fetch(`${Constants.backendUrl}${Constants.newGame}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -30,15 +31,6 @@ const Game = props => {
             })
         })
     }
-    if (foundTreasure >= 3) {
-        sendGameStat()
-        return <Redirect to="/gameOver" />
-    }
-
-    if(squares.filter(s => s === "").length === 0){
-        sendGameStat(true)
-        return <Redirect to="/gameOver" />
-    }
 
     const handleClick = (i) => {
         const updatedSquares = [...squares];
@@ -48,7 +40,7 @@ const Game = props => {
     }
 
     const turnHandler = async () => {
-        let res = await fetch('http://localhost:5000/api/guess', {
+        let res = await fetch(`${Constants.backendUrl}${Constants.guess}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -72,6 +64,17 @@ const Game = props => {
         dispatch(gameActions.addTurn())
         setSquares(updatedSquares);
         setGuesses([])
+    }
+
+
+
+    if(!userName){
+        return <Redirect to="/" />
+    }
+
+    if (foundTreasure >= 3 || squares.filter(s => s === "").length === 0) {
+        sendGameStat()
+        return <Redirect to="/gameOver" />
     }
 
     return (

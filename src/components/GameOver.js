@@ -1,17 +1,19 @@
 import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Label, Button, Segment, List, Header } from 'semantic-ui-react';
 
 import '../assets/TicTacToe.css';
 import * as gameActions from '../store/actions/gameActions';
+import Constants from '../constants';
 
 const GameOver = props => {
     const top10 = useSelector(state => state.gameReducer.top10);
+    const userName = useSelector(state => state.gameReducer.userName);
     const dispatch = useDispatch()
 
     const getTop10 = useCallback(async () => {
-        let res = await fetch("http://localhost:5000/api/top10", {
+        let res = await fetch(`${Constants.backendUrl}${Constants.top10}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,6 +28,10 @@ const GameOver = props => {
     useEffect(() => {
         getTop10()
     }, [dispatch, getTop10])
+
+    if(!userName){
+        return <Redirect to="/" />
+    }
 
     return (
         <Segment className="segmentRowStyle">
